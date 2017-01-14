@@ -13,11 +13,16 @@
 class Robot:public frc::IterativeRobot{
 	private:
 		std::unique_ptr<frc::Command> autonomousCommand;
+		TeleopCommand* TeleopC;
 		frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
+			CommandBase::init();
 			//chooser.AddDefault("Default Auto", new ExampleCommand());
 			// chooser.AddObject("My Auto", new MyAutoCommand());
+
+			TeleopC = new TeleopCommand();
+
 			frc::SmartDashboard::PutData("Auto Modes", &chooser);
 		}
 
@@ -70,9 +75,11 @@ class Robot:public frc::IterativeRobot{
 			// teleop starts running. If you want the autonomous to
 			// continue until interrupted by another command, remove
 			// this line or comment it out.
-			if (autonomousCommand != nullptr){
+			/*if (autonomousCommand != nullptr){
 				autonomousCommand->Cancel();
-			}
+			}*/
+			if(TeleopC != NULL)
+				TeleopC->Start();
 		}
 
 		void TeleopPeriodic() override{
