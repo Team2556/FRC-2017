@@ -1,7 +1,6 @@
 #include "OI.h"
 
-#include <WPILib.h>
-
 OI::OI() {
-	// Process operator interface input here.
+	Xbox1.reset(new frc::XboxController(0));
+	Xbox2.reset(new frc::XboxController(1));
 }

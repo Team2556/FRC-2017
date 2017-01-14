@@ -7,13 +7,16 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 
-#include "Commands/ExampleCommand.h"
+#include "Commands/Teleoperated/TeleopCommand.h"
 #include "CommandBase.h"
 
 class Robot:public frc::IterativeRobot{
+	private:
+		std::unique_ptr<frc::Command> autonomousCommand;
+		frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
-			chooser.AddDefault("Default Auto", new ExampleCommand());
+			//chooser.AddDefault("Default Auto", new ExampleCommand());
 			// chooser.AddObject("My Auto", new MyAutoCommand());
 			frc::SmartDashboard::PutData("Auto Modes", &chooser);
 		}
@@ -79,10 +82,6 @@ class Robot:public frc::IterativeRobot{
 		void TestPeriodic() override{
 			frc::LiveWindow::GetInstance()->Run();
 		}
-
-	private:
-		std::unique_ptr<frc::Command> autonomousCommand;
-		frc::SendableChooser<frc::Command*> chooser;
 };
 
 START_ROBOT_CLASS(Robot)
