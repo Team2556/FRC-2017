@@ -3,6 +3,7 @@
 
 #include "CommandBase.h"
 #include "WPILib.h"
+#include "RAR/RARMath.h"
 
 class TeleopCommand: public CommandBase{
 public:

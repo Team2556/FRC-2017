@@ -9,7 +9,7 @@ void TeleopCommand::Initialize(){
 }
 
 void TeleopCommand::Execute(){
-	drivetrain.get()->Drive(oi->Xbox1.get()->GetX(frc::XboxController::kLeftHand), oi->Xbox1.get()->GetY(frc::XboxController::kLeftHand), oi->Xbox1.get()->GetX(frc::XboxController::kRightHand), 0.0);
+	drivetrain.get()->Drive(DeadSens(oi->Xbox1.get()->GetX(frc::XboxController::kLeftHand), 0.025, 0.85), DeadSens(oi->Xbox1.get()->GetY(frc::XboxController::kLeftHand), 0.025, 0.85), DeadSens(oi->Xbox1.get()->GetX(frc::XboxController::kRightHand), 0.025, 0.85), 0.0);
 }
 
 bool TeleopCommand::IsFinished(){
