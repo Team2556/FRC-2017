@@ -6,13 +6,16 @@
 #include "RAR/RARMath.h"
 
 class TeleopCommand: public CommandBase{
-public:
-	TeleopCommand();
-	void Initialize();
-	void Execute();
-	bool IsFinished();
-	void End();
-	void Interrupted();
+	private:
+		int _DriveMode; // -1: Left; 0: Front; 1: Right
+	public:
+		TeleopCommand();
+		void Initialize();
+		void Execute();
+		bool IsFinished();
+		void End();
+		void Interrupted();
+		int GetDriveMode();
 };
 
 #endif

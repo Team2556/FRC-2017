@@ -6,50 +6,45 @@
 #include <LiveWindow/LiveWindow.h>
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
-
-#include "Commands/Teleoperated/TeleopCommand.h"
 #include "CommandBase.h"
+
+#include "Commands/Autonomous/AutonomousMain.h"
+#include "Commands/Teleoperated/TeleopCommand.h"
+
+#include "IMU.h"
+
+std::unique_ptr<IMU> NavX;
 
 class Robot:public frc::IterativeRobot{
 	private:
-		std::unique_ptr<frc::Command> autonomousCommand;
-		TeleopCommand* TeleopC;
+		std::unique_ptr<frc::Command> AutonomousC;
+		std::unique_ptr<TeleopCommand> TeleopC;
 		frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
 			CommandBase::init();
-			//chooser.AddDefault("Default Auto", new ExampleCommand());
-			// chooser.AddObject("My Auto", new MyAutoCommand());
 
-			TeleopC = new TeleopCommand();
+			/*chooser.AddDefault("Default Auto", new ExampleCommand());
+			chooser.AddObject("My Auto", new MyAutoCommand());
+			frc::SmartDashboard::PutData("Auto Modes", &chooser);*/
 
-			frc::SmartDashboard::PutData("Auto Modes", &chooser);
+			AutonomousC.reset(new AutonomousMain());
+			TeleopC.reset(new TeleopCommand());
+			NavX.reset(new IMU(SPI::Port::kMXP));
+
+			// This code streams camera 0 to the dashboard using WPILib's CameraServer
+			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
 		}
 
-		/**
-		 * This function is called once each time the robot enters Disabled mode.
-		 * You can use it to reset any subsystem information you want to clear when
-		 * the robot is disabled.
-		 */
 		void DisabledInit() override{
 
 		}
 
 		void DisabledPeriodic() override{
 			frc::Scheduler::GetInstance()->Run();
+			GlobalPeriodic();
 		}
 
-		/**
-		 * This autonomous (along with the chooser code above) shows how to select
-		 * between different autonomous modes using the dashboard. The sendable
-		 * chooser code works with the Java SmartDashboard. If you prefer the
-		 * LabVIEW Dashboard, remove all of the chooser code and uncomment the
-		 * GetString code to get the auto name from the text box below the Gyro.
-		 *
-		 * You can add additional auto modes by adding additional commands to the
-		 * chooser code above (like the commented example) or additional comparisons
-		 * to the if-else structure below with additional strings & commands.
-		 */
 		void AutonomousInit() override{
 			/* std::string autoSelected = frc::SmartDashboard::GetString("Auto Selector", "Default");
 			 if (autoSelected == "My Auto") {
@@ -57,37 +52,40 @@ class Robot:public frc::IterativeRobot{
 			 }
 			 else {
 			 autonomousCommand.reset(new ExampleCommand());
-			 } */
+			 }
 
-			autonomousCommand.reset(chooser.GetSelected());
+			AutonomousC.reset(chooser.GetSelected());*/
 
-			if (autonomousCommand.get() != nullptr){
-				autonomousCommand->Start();
+			if (AutonomousC.get() != nullptr){
+				AutonomousC->Start();
 			}
 		}
 
 		void AutonomousPeriodic() override{
 			frc::Scheduler::GetInstance()->Run();
+			GlobalPeriodic();
 		}
 
 		void TeleopInit() override{
-			// This makes sure that the autonomous stops running when
-			// teleop starts running. If you want the autonomous to
-			// continue until interrupted by another command, remove
-			// this line or comment it out.
 			/*if (autonomousCommand != nullptr){
 				autonomousCommand->Cancel();
 			}*/
-			if(TeleopC != NULL)
+			if(TeleopC.get() != nullptr)
 				TeleopC->Start();
 		}
 
 		void TeleopPeriodic() override{
 			frc::Scheduler::GetInstance()->Run();
+			GlobalPeriodic();
 		}
 
 		void TestPeriodic() override{
 			frc::LiveWindow::GetInstance()->Run();
+			GlobalPeriodic();
+		}
+
+		void GlobalPeriodic(){
+
 		}
 };
 
