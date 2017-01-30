@@ -19,6 +19,7 @@ class Robot:public frc::IterativeRobot{
 	private:
 		std::unique_ptr<frc::Command> AutonomousC;
 		std::unique_ptr<TeleopCommand> TeleopC;
+		std::unique_ptr<frc::Compressor> Comp;
 		frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
@@ -32,12 +33,14 @@ class Robot:public frc::IterativeRobot{
 			TeleopC.reset(new TeleopCommand());
 			NavX.reset(new IMU(SPI::Port::kMXP));
 
+			Comp.reset(new frc::Compressor(11));
+
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
 		}
 
 		void DisabledInit() override{
-
+			Comp->SetClosedLoopControl(false);
 		}
 
 		void DisabledPeriodic() override{
@@ -55,7 +58,7 @@ class Robot:public frc::IterativeRobot{
 			 }
 
 			AutonomousC.reset(chooser.GetSelected());*/
-
+			Comp->SetClosedLoopControl(true);
 			if (AutonomousC.get() != nullptr){
 				AutonomousC->Start();
 			}
@@ -70,6 +73,7 @@ class Robot:public frc::IterativeRobot{
 			/*if (autonomousCommand != nullptr){
 				autonomousCommand->Cancel();
 			}*/
+			Comp->SetClosedLoopControl(true);
 			if(TeleopC.get() != nullptr)
 				TeleopC->Start();
 		}
