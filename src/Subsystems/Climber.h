@@ -4,7 +4,7 @@
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 
-class Climber : public Subsystem {
+class Climber:public Subsystem{
 	private:
 
 	public:
@@ -12,7 +12,7 @@ class Climber : public Subsystem {
 
 		Climber();
 		void InitDefaultCommand();
-		void Set(float Power);
+		void Set(double Power);
 };
 
 #endif  // Climber_H

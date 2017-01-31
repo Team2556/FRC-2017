@@ -5,7 +5,7 @@
 #include "WPILib.h"
 #include "RAR/RARMath.h"
 
-class TeleopCommand: public CommandBase{
+class TeleopCommand:public CommandBase{
 	private:
 		int _DriveMode; // -1: Left; 0: Front; 1: Right
 	public:

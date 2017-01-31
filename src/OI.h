@@ -3,7 +3,7 @@
 
 #include <WPILib.h>
 
-class OI {
+class OI{
 	public:
 		std::unique_ptr<frc::XboxController> Xbox1;
 		std::unique_ptr<frc::XboxController> Xbox2;

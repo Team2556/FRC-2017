@@ -4,7 +4,7 @@
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 
-class BallIntake : public Subsystem {
+class BallIntake:public Subsystem{
 	private:
 
 	public:
@@ -12,7 +12,7 @@ class BallIntake : public Subsystem {
 
 		BallIntake();
 		void InitDefaultCommand();
-		void Set(float Power);
+		void Set(double Power);
 };
 
 #endif  // BallIntake_H

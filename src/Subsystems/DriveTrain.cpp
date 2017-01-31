@@ -18,7 +18,6 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	_FrontRight->SetInverted(true);
 	_BackRight->SetInverted(true);
 
-	//_Drive = new frc::RobotDrive(_FrontLeft, _BackLeft, _FrontRight, _BackRight);
 	_Drive.reset(new frc::RobotDrive(_FrontLeft.get(), _BackLeft.get(), _FrontRight.get(), _BackRight.get()));
 }
 
@@ -26,6 +25,6 @@ void DriveTrain::InitDefaultCommand(){
 
 }
 
-void DriveTrain::Drive(float X, float Y, float Rotation, float GyroAngle){
+void DriveTrain::Drive(double X, double Y, double Rotation, double GyroAngle){
 	_Drive->MecanumDrive_Cartesian(X, Y, Rotation, GyroAngle);
 }

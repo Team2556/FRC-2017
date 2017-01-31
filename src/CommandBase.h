@@ -7,6 +7,7 @@
 #include "Subsystems/BallIntake.h"
 #include "Subsystems/GearIntake.h"
 #include "Subsystems/Climber.h"
+#include "Subsystems/Shooter.h"
 #include "OI.h"
 #include "WPILib.h"
 
@@ -15,7 +16,7 @@
  * CommandBase stores creates and stores each control system. To access a
  * subsystem elsewhere in your code in your code use CommandBase.examplesubsystem
  */
-class CommandBase: public Command{
+class CommandBase:public Command{
 	public:
 		CommandBase(const std::string &name);
 		CommandBase();
@@ -25,6 +26,8 @@ class CommandBase: public Command{
 		static std::unique_ptr<BallIntake> ballintake;
 		static std::unique_ptr<GearIntake> gearintake;
 		static std::unique_ptr<Climber> climber;
+		static std::unique_ptr<Shooter> shooter;
+
 		static std::unique_ptr<OI> oi;
 };
 

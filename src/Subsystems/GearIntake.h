@@ -4,7 +4,7 @@
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
 
-class GearIntake : public Subsystem {
+class GearIntake:public Subsystem{
 	private:
 
 	public:

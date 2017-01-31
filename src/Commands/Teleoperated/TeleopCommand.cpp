@@ -6,6 +6,7 @@ TeleopCommand::TeleopCommand():
 	Requires(ballintake.get());
 	Requires(gearintake.get());
 	Requires(climber.get());
+	Requires(shooter.get());
 }
 
 void TeleopCommand::Initialize(){
