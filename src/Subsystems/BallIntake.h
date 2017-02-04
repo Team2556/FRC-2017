@@ -9,10 +9,11 @@ class BallIntake:public Subsystem{
 
 	public:
 		std::unique_ptr<frc::Talon> _IntakeMotor;
+		std::unique_ptr<frc::Spark> _AgitatorMotor;
 
 		BallIntake();
 		void InitDefaultCommand();
-		void Set(double Power);
+		void Set(double IntakePower, double AgitatorPower);
 };
 
 #endif  // BallIntake_H

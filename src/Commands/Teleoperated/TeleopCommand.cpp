@@ -23,7 +23,7 @@ void TeleopCommand::Execute(){
 
 	drivetrain.get()->Drive(DeadSens(oi->Xbox1.get()->GetX(frc::XboxController::kLeftHand), 0.025, 0.85), DeadSens(oi->Xbox1.get()->GetY(frc::XboxController::kLeftHand), 0.025, 0.85), DeadSens(oi->Xbox1.get()->GetX(frc::XboxController::kRightHand), 0.025, 0.85), _DriveMode * 90.0);
 
-	ballintake.get()->Set(oi->Xbox1.get()->GetTriggerAxis(frc::XboxController::kRightHand) - oi->Xbox1.get()->GetTriggerAxis(frc::XboxController::kLeftHand));
+	ballintake.get()->Set(oi->Xbox1.get()->GetTriggerAxis(frc::XboxController::kRightHand) - oi->Xbox1.get()->GetTriggerAxis(frc::XboxController::kLeftHand), oi->Xbox1.get()->GetXButton() ? 0.5 : 0.0);
 
 	gearintake.get()->Set(oi->Xbox1.get()->GetXButton() ? frc::DoubleSolenoid::Value::kForward : frc::DoubleSolenoid::Value::kReverse);
 
@@ -36,7 +36,7 @@ bool TeleopCommand::IsFinished(){
 
 void TeleopCommand::End(){
 	drivetrain.get()->Drive(0.0, 0.0, 0.0, 0.0);
-	ballintake.get()->Set(0.0);
+	ballintake.get()->Set(0.0, 0.0);
 	gearintake.get()->Set(frc::DoubleSolenoid::kOff);
 	climber.get()->Set(0.0);
 }

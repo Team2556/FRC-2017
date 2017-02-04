@@ -2,14 +2,6 @@
 #include "../RobotMap.h"
 
 DriveTrain::DriveTrain():Subsystem("DriveTrain"){
-	/*_FrontLeft = new CANTalon(FRONT_LEFT_MOTOR);
-	_FrontRight = new CANTalon(FRONT_RIGHT_MOTOR);
-	_BackLeft = new CANTalon(BACK_LEFT_MOTOR);
-	_BackRight = new CANTalon(BACK_RIGHT_MOTOR);
-
-	_FrontRight->SetInverted(true);
-	_BackRight->SetInverted(true);*/
-
 	_FrontLeft.reset(new CANTalon(FRONT_LEFT_MOTOR));
 	_FrontRight.reset(new CANTalon(FRONT_RIGHT_MOTOR));
 	_BackLeft.reset(new CANTalon(BACK_LEFT_MOTOR));
