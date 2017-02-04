@@ -4,8 +4,11 @@
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "CANTalon.h"
+#include "IMU.h"
 
-class DriveTrain:public Subsystem{
+extern std::unique_ptr<IMU> NavX;
+
+class DriveTrain:public Subsystem, frc::PIDOutput{
 	private:
 
 	public:
@@ -16,9 +19,14 @@ class DriveTrain:public Subsystem{
 
 		std::unique_ptr<frc::RobotDrive> _Drive;
 
+		std::unique_ptr<frc::PIDController> _AngleController;
+
 		DriveTrain();
 		void InitDefaultCommand();
 		void Drive(double X, double Y, double Rotation, double GyroAngle);
+		void DriveWithAngle(double X, double Y, double dSetPoint, double GyroAngle);
+		void PIDWrite(double Output);
+
 };
 
 #endif

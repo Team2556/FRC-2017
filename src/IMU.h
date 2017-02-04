@@ -23,5 +23,5 @@ class IMU:public AHRS{
 		void Update();*/
 };
 
-extern std::unique_ptr<IMU> NavX;
+//extern std::unique_ptr<IMU> NavX;
 #endif
