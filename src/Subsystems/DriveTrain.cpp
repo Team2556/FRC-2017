@@ -7,8 +7,13 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	_BackLeft.reset(new CANTalon(BACK_LEFT_MOTOR));
 	_BackRight.reset(new CANTalon(BACK_RIGHT_MOTOR));
 
-	_FrontRight->SetInverted(true);
-	_BackRight->SetInverted(true);
+	_FrontLeft->SetInverted(true);
+	_BackLeft->SetInverted(true);
+
+	/*_FrontLeft->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);
+	_FrontRight->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);
+	_BackLeft->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);
+	_BackRight->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);*/
 
 	_Drive.reset(new frc::RobotDrive(_FrontLeft.get(), _BackLeft.get(), _FrontRight.get(), _BackRight.get()));
 
