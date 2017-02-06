@@ -19,16 +19,24 @@
 // constexpr int RANGE_FINDER_MODULE = 1;
 
 // CAN
+// Control System Components
+const int PDP = 1;
+const int PCM = 2;
+
 // Drivetrain motors
-const int FRONT_LEFT_MOTOR = 1;
-const int FRONT_RIGHT_MOTOR = 3;
-const int BACK_LEFT_MOTOR = 2;
-const int BACK_RIGHT_MOTOR = 4;
+const int FRONT_LEFT_MOTOR = 11;
+const int FRONT_RIGHT_MOTOR = 13;
+const int BACK_LEFT_MOTOR = 12;
+const int BACK_RIGHT_MOTOR = 14;
 
 // Shooter motors
+const int SHOOTER_MOTOR = 15;
+const int TANK_MOTOR = 16;
 
-// Ball intake motors
+// Ball intake motor
+const int BALL_MOTOR = 17;
 
-// Gear intake servo
+// Climber motor
+const int CLIMBER_MOTOR = 18;
 
 #endif  // ROBOTMAP_H

@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 Climber::Climber():Subsystem("Climber"){
-	_ClimberMotor.reset(new frc::Talon(1));
+	_ClimberMotor.reset(new CANTalon(CLIMBER_MOTOR));
 }
 
 void Climber::InitDefaultCommand(){

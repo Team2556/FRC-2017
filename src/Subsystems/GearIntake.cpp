@@ -2,7 +2,7 @@
 #include "../RobotMap.h"
 
 GearIntake::GearIntake() : Subsystem("GearIntake"){
-	_IntakeSolenoid.reset(new frc::DoubleSolenoid(11, 0, 1));
+	_IntakeSolenoid.reset(new frc::DoubleSolenoid(PCM, 0, 1));
 }
 
 void GearIntake::InitDefaultCommand(){

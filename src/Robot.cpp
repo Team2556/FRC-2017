@@ -7,6 +7,7 @@
 #include <SmartDashboard/SendableChooser.h>
 #include <SmartDashboard/SmartDashboard.h>
 #include "CommandBase.h"
+#include "RobotMap.h"
 
 #include "Commands/Autonomous/AutonomousMain.h"
 #include "Commands/Teleoperated/TeleopCommand.h"
@@ -33,7 +34,7 @@ class Robot:public frc::IterativeRobot{
 			TeleopC.reset(new TeleopCommand());
 			NavX.reset(new IMU(SPI::Port::kMXP));
 
-			Comp.reset(new frc::Compressor(11));
+			Comp.reset(new frc::Compressor(PCM));
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);

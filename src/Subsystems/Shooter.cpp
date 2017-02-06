@@ -2,8 +2,8 @@
 #include "../RobotMap.h"
 
 Shooter::Shooter():Subsystem("Shooter"){
-	_ShooterMotor.reset(new frc::Talon(2));
-	_TankMotor.reset(new frc::Talon(3));
+	_ShooterMotor.reset(new CANTalon(SHOOTER_MOTOR));
+	_TankMotor.reset(new CANTalon(TANK_MOTOR));
 }
 
 void Shooter::InitDefaultCommand(){

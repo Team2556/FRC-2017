@@ -3,13 +3,14 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
+#include "CANTalon.h"
 
 class Shooter:public Subsystem{
 	private:
 
 	public:
-		std::unique_ptr<frc::Talon> _ShooterMotor;
-		std::unique_ptr<frc::Talon> _TankMotor;
+		std::unique_ptr<CANTalon> _ShooterMotor;
+		std::unique_ptr<CANTalon> _TankMotor;
 
 		Shooter();
 		void InitDefaultCommand();

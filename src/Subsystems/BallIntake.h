@@ -3,17 +3,17 @@
 
 #include <Commands/Subsystem.h>
 #include "WPILib.h"
+#include "CANTalon.h"
 
 class BallIntake:public Subsystem{
 	private:
 
 	public:
-		std::unique_ptr<frc::Talon> _IntakeMotor;
-		std::unique_ptr<frc::Spark> _AgitatorMotor;
+		std::unique_ptr<CANTalon> _IntakeMotor;
 
 		BallIntake();
 		void InitDefaultCommand();
-		void Set(double IntakePower, double AgitatorPower);
+		void Set(double IntakePower);
 };
 
 #endif  // BallIntake_H
