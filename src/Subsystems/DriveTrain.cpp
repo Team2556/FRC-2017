@@ -18,6 +18,13 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	_Drive.reset(new frc::RobotDrive(_FrontLeft.get(), _BackLeft.get(), _FrontRight.get(), _BackRight.get()));
 
 	_AngleController.reset(new frc::PIDController(0.0, 0.0, 0.0, NavX.get(), this));
+	_XPID.reset(new frc::PIDController(0.0, 0.0, 0.0, &_XPIDSource, this));
+	_YPID.reset(new frc::PIDController(0.0, 0.0, 0.0, &_YPIDSource, this));
+
+	_XPID->SetSetpoint(0.0);
+	_YPID->SetSetpoint(0.0);
+
+	table = NetworkTable::GetTable("Vision");
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -35,4 +42,24 @@ void DriveTrain::DriveWithAngle(double X, double Y, double dSetPoint, double Gyr
 
 void DriveTrain::PIDWrite(double Output){
 
+}
+
+void DriveTrain::DriveToGear(){
+	_XPID->SetSetpoint(0.0);
+	_YPID->SetSetpoint(0.0);
+
+	_XPIDSource.SetValue(table->GetNumber("X", 0.0));
+	_YPIDSource.SetValue(table->GetNumber("Y", 0.0));
+
+	_Drive->MecanumDrive_Cartesian(_XPID->Get(), _YPID->Get(), 0.0, 0.0);
+}
+
+void DriveTrain::DriveToGoal(){
+	_XPID->SetSetpoint(0.0);
+	_YPID->SetSetpoint(0.0);
+
+	_XPIDSource.SetValue(table->GetNumber("X", 0.0));
+	_YPIDSource.SetValue(table->GetNumber("Y", 0.0));
+
+	_Drive->MecanumDrive_Cartesian(_XPID->Get(), _YPID->Get(), 0.0, 0.0);
 }
