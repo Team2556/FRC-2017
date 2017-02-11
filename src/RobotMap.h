@@ -30,11 +30,11 @@ const int BACK_LEFT_MOTOR = 12;
 const int BACK_RIGHT_MOTOR = 14;
 
 // Shooter motors
-const int SHOOTER_MOTOR = 15;
+const int SHOOTER_MOTOR = 17;
 const int TANK_MOTOR = 16;
 
 // Ball intake motor
-const int BALL_MOTOR = 17;
+const int BALL_MOTOR = 15;
 
 // Climber motor
 const int CLIMBER_MOTOR = 18;
