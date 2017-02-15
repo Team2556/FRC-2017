@@ -14,6 +14,8 @@ class DriveTrain:public Subsystem, frc::PIDOutput{
 		std::shared_ptr<NetworkTable> table;
 		PIDSourceD _XPIDSource;
 		PIDSourceD _YPIDSource;
+
+		frc::LiveWindow *LW;
 	public:
 		std::unique_ptr<CANTalon> _FrontLeft;
 		std::unique_ptr<CANTalon> _FrontRight;
