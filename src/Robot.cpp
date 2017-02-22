@@ -21,7 +21,8 @@ class Robot:public frc::IterativeRobot{
 		std::unique_ptr<frc::Command> AutonomousC;
 		std::unique_ptr<TeleopCommand> TeleopC;
 		std::unique_ptr<frc::Compressor> Comp;
-		frc::SendableChooser<frc::Command*> chooser;
+		std::shared_ptr<NetworkTable> Table;
+		//frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
 			CommandBase::init();
@@ -35,6 +36,9 @@ class Robot:public frc::IterativeRobot{
 			NavX.reset(new IMU(SPI::Port::kMXP));
 
 			Comp.reset(new frc::Compressor(PCM));
+
+			Table = NetworkTable::GetTable("Vision");
+			Table->PutNumber("Camera", 0.0);
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
