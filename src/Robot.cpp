@@ -21,13 +21,9 @@ class Robot:public frc::IterativeRobot{
 		std::unique_ptr<frc::Command> AutonomousC;
 		std::unique_ptr<TeleopCommand> TeleopC;
 		std::unique_ptr<frc::Compressor> Comp;
-<<<<<<< HEAD
 		std::shared_ptr<NetworkTable> Table;
-		//frc::SendableChooser<frc::Command*> chooser;
-=======
-		frc::SendableChooser<frc::Command*> chooser;
 		frc::Preferences *prefs;
->>>>>>> eb7e115e9c2a4bd63bd8589dec6d1d16120b38f1
+		//frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
 			CommandBase::init();
@@ -42,14 +38,12 @@ class Robot:public frc::IterativeRobot{
 
 			Comp.reset(new frc::Compressor(PCM));
 
-<<<<<<< HEAD
 			Table = NetworkTable::GetTable("Vision");
 			Table->PutNumber("Camera", 0.0);
-=======
+
 			SmartDashboard::PutBoolean("Two Controllers?", true);
 
 			prefs = frc::Preferences::GetInstance();
->>>>>>> eb7e115e9c2a4bd63bd8589dec6d1d16120b38f1
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
