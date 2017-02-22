@@ -1,6 +1,7 @@
 #ifndef AutonomousMain_H
 #define AutonomousMain_H
 
+#include <Commands/DriveTrain/DriveToGearPost.h>
 #include "WPILib.h"
 #include "Commands/CommandGroup.h"
 

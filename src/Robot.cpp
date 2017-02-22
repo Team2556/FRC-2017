@@ -100,7 +100,9 @@ class Robot:public frc::IterativeRobot{
 			CommandBase::drivetrain->_AngleController->SetSetpoint(prefs->GetFloat("Setpoint", 0.0));
 			prefs->GetBoolean("Enabled", false) ? CommandBase::drivetrain->_AngleController->Enable() : CommandBase::drivetrain->_AngleController->Disable();
 
-			SmartDashboard::PutNumber("Error", CommandBase::drivetrain->_AngleController->GetError());
+			//SmartDashboard::PutNumber("Error", CommandBase::drivetrain->_AngleController->GetError());
+			SmartDashboard::PutNumber("Setpoint", CommandBase::drivetrain->_AngleController->GetSetpoint());
+			SmartDashboard::PutNumber("Proportional", CommandBase::drivetrain->_AngleController->GetP());
 		}
 };
 

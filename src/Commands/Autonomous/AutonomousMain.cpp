@@ -1,10 +1,15 @@
 #include "AutonomousMain.h"
 
 AutonomousMain::AutonomousMain(){
+
 	// Add Commands here:
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
+
+	AddSequential(new DriveToGearPost());
+
+
 
 	// To run multiple commands at the same time,
 	// use AddParallel()

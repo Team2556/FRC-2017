@@ -26,9 +26,9 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 
 	table = NetworkTable::GetTable("Vision");
 
-	LW = LiveWindow::GetInstance();
+	/*LW = LiveWindow::GetInstance();
 	LW->AddActuator("DriveTrain", "PID", _AngleController.get());
-	LW->SetEnabled(true);
+	LW->SetEnabled(true);*/
 }
 
 void DriveTrain::InitDefaultCommand(){

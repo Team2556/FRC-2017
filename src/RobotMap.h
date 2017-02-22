@@ -31,12 +31,12 @@ const int BACK_RIGHT_MOTOR = 14;
 
 // Shooter motors
 const int SHOOTER_MOTOR = 17;
-const int TANK_MOTOR = 16;
+const int TANK_MOTOR = 0; //PWM
 
 // Ball intake motor
-const int BALL_MOTOR = 15;
+const int BALL_MOTOR = 16;
 
 // Climber motor
-const int CLIMBER_MOTOR = 18;
+const int CLIMBER_MOTOR = 15;
 
 #endif  // ROBOTMAP_H
