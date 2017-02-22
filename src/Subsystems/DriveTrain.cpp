@@ -7,8 +7,8 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	_BackLeft.reset(new CANTalon(BACK_LEFT_MOTOR));
 	_BackRight.reset(new CANTalon(BACK_RIGHT_MOTOR));
 
-	_FrontLeft->SetInverted(true);
-	_BackLeft->SetInverted(true);
+	_FrontRight->SetInverted(true);
+	_BackRight->SetInverted(true);
 
 	/*_FrontLeft->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);
 	_FrontRight->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);
@@ -25,6 +25,10 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	_YPID->SetSetpoint(0.0);
 
 	table = NetworkTable::GetTable("Vision");
+
+	/*LW = LiveWindow::GetInstance();
+	LW->AddActuator("DriveTrain", "PID", _AngleController.get());
+	LW->SetEnabled(true);*/
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -36,7 +40,7 @@ void DriveTrain::Drive(double X, double Y, double Rotation, double GyroAngle){
 }
 
 void DriveTrain::DriveWithAngle(double X, double Y, double dSetPoint, double GyroAngle){
-	_AngleController->SetSetpoint(_AngleController->GetSetpoint() + dSetPoint);
+	//_AngleController->SetSetpoint(_AngleController->GetSetpoint() + dSetPoint);//_AngleController->GetSetpoint() + dSetPoint);
 	_Drive->MecanumDrive_Cartesian(X, Y, _AngleController->Get(), GyroAngle);
 }
 

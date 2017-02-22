@@ -21,8 +21,13 @@ class Robot:public frc::IterativeRobot{
 		std::unique_ptr<frc::Command> AutonomousC;
 		std::unique_ptr<TeleopCommand> TeleopC;
 		std::unique_ptr<frc::Compressor> Comp;
+<<<<<<< HEAD
 		std::shared_ptr<NetworkTable> Table;
 		//frc::SendableChooser<frc::Command*> chooser;
+=======
+		frc::SendableChooser<frc::Command*> chooser;
+		frc::Preferences *prefs;
+>>>>>>> eb7e115e9c2a4bd63bd8589dec6d1d16120b38f1
 	public:
 		void RobotInit() override{
 			CommandBase::init();
@@ -37,8 +42,14 @@ class Robot:public frc::IterativeRobot{
 
 			Comp.reset(new frc::Compressor(PCM));
 
+<<<<<<< HEAD
 			Table = NetworkTable::GetTable("Vision");
 			Table->PutNumber("Camera", 0.0);
+=======
+			SmartDashboard::PutBoolean("Two Controllers?", true);
+
+			prefs = frc::Preferences::GetInstance();
+>>>>>>> eb7e115e9c2a4bd63bd8589dec6d1d16120b38f1
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
@@ -89,12 +100,19 @@ class Robot:public frc::IterativeRobot{
 		}
 
 		void TestPeriodic() override{
+			frc::Scheduler::GetInstance()->Run();
 			frc::LiveWindow::GetInstance()->Run();
 			GlobalPeriodic();
 		}
 
 		void GlobalPeriodic(){
+			CommandBase::drivetrain->_AngleController->SetPID(prefs->GetFloat("kP", 0.0), prefs->GetFloat("kI", 0.0), prefs->GetFloat("kD", 0.0));
+			CommandBase::drivetrain->_AngleController->SetSetpoint(prefs->GetFloat("Setpoint", 0.0));
+			prefs->GetBoolean("Enabled", false) ? CommandBase::drivetrain->_AngleController->Enable() : CommandBase::drivetrain->_AngleController->Disable();
 
+			//SmartDashboard::PutNumber("Error", CommandBase::drivetrain->_AngleController->GetError());
+			SmartDashboard::PutNumber("Setpoint", CommandBase::drivetrain->_AngleController->GetSetpoint());
+			SmartDashboard::PutNumber("Proportional", CommandBase::drivetrain->_AngleController->GetP());
 		}
 };
 

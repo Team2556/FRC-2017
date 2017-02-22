@@ -10,7 +10,7 @@ class Shooter:public Subsystem{
 
 	public:
 		std::unique_ptr<CANTalon> _ShooterMotor;
-		std::unique_ptr<CANTalon> _TankMotor;
+		std::unique_ptr<Spark> _TankMotor;
 
 		Shooter();
 		void InitDefaultCommand();
