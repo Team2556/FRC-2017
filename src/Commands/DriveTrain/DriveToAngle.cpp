@@ -18,7 +18,7 @@ void DriveToAngle::PIDWrite(double Output){
 }
 
 double DriveToAngle::PIDGet(){
-	return NavX->GetYaw();
+	return 0.0;//NavX->GetYaw();
 }
 
 bool DriveToAngle::IsFinished(){

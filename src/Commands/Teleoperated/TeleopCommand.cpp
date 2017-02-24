@@ -1,5 +1,6 @@
 #include "Commands/DriveTrain/DriveToGearPost.h" // BOB
 #include "TeleopCommand.h"
+#include <cmath>
 
 
 TeleopCommand::TeleopCommand():
@@ -27,10 +28,10 @@ void TeleopCommand::Execute(){
 	//drivetrain.get()->DriveWithAngle(DeadSens(oi->Xbox1.get()->GetX(frc::XboxController::kLeftHand), 0.025, 0.85), DeadSens(oi->Xbox1.get()->GetY(frc::XboxController::kLeftHand), 0.025, 0.85), DeadSens(oi->Xbox1.get()->GetX(frc::XboxController::kRightHand), 0.025, 0.85), _DriveMode * 90.0);
 
 	if(SmartDashboard::GetBoolean("Two Controllers?", true)) {
-		shooter.get()->Set(oi->Xbox2.get()->GetBumper(frc::XboxController::kRightHand) ? 1.0 : 0.0, oi->Xbox2.get()->GetAButton() ? 0.25 : oi->Xbox2.get()->GetBButton() ? -0.25 :0.0);
+		shooter.get()->Set(oi->Xbox2.get()->GetBumper(frc::XboxController::kRightHand) ? 1.0 : 0.0, oi->Xbox2.get()->GetAButton() ? -0.5 : oi->Xbox2.get()->GetBButton() ? -0.25 : oi->Xbox2.get()->GetYButton() ? 0.5 : 0.0);
 		ballintake.get()->Set(oi->Xbox2.get()->GetTriggerAxis(frc::XboxController::kRightHand) - oi->Xbox2.get()->GetTriggerAxis(frc::XboxController::kLeftHand));
 		gearintake.get()->Set(oi->Xbox2.get()->GetXButton() ? frc::DoubleSolenoid::Value::kForward : frc::DoubleSolenoid::Value::kReverse);
-		climber.get()->Set(DeadSens(oi->Xbox2.get()->GetY(frc::XboxController::kLeftHand), 0.025, 1.0));
+		climber.get()->Set(abs(DeadSens(oi->Xbox2.get()->GetY(frc::XboxController::kLeftHand), 0.025, 1.0)));
 	} else {
 		shooter.get()->Set(0.0, oi->Xbox1.get()->GetXButton() ? 0.5 : 0.0);
 		ballintake.get()->Set(oi->Xbox1.get()->GetTriggerAxis(frc::XboxController::kRightHand) - oi->Xbox1.get()->GetTriggerAxis(frc::XboxController::kLeftHand));

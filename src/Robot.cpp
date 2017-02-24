@@ -34,7 +34,7 @@ class Robot:public frc::IterativeRobot{
 
 			AutonomousC.reset(new AutonomousMain());
 			TeleopC.reset(new TeleopCommand());
-			NavX.reset(new IMU(SPI::Port::kMXP));
+			//NavX.reset(new IMU(SPI::Port::kMXP));
 
 			Comp.reset(new frc::Compressor(PCM));
 
@@ -100,13 +100,13 @@ class Robot:public frc::IterativeRobot{
 		}
 
 		void GlobalPeriodic(){
-			CommandBase::drivetrain->_AngleController->SetPID(prefs->GetFloat("kP", 0.0), prefs->GetFloat("kI", 0.0), prefs->GetFloat("kD", 0.0));
-			CommandBase::drivetrain->_AngleController->SetSetpoint(prefs->GetFloat("Setpoint", 0.0));
-			prefs->GetBoolean("Enabled", false) ? CommandBase::drivetrain->_AngleController->Enable() : CommandBase::drivetrain->_AngleController->Disable();
+			//CommandBase::drivetrain->_AngleController->SetPID(prefs->GetFloat("kP", 0.0), prefs->GetFloat("kI", 0.0), prefs->GetFloat("kD", 0.0));
+			//CommandBase::drivetrain->_AngleController->SetSetpoint(prefs->GetFloat("Setpoint", 0.0));
+			//prefs->GetBoolean("Enabled", false) ? CommandBase::drivetrain->_AngleController->Enable() : CommandBase::drivetrain->_AngleController->Disable();
 
 			//SmartDashboard::PutNumber("Error", CommandBase::drivetrain->_AngleController->GetError());
-			SmartDashboard::PutNumber("Setpoint", CommandBase::drivetrain->_AngleController->GetSetpoint());
-			SmartDashboard::PutNumber("Proportional", CommandBase::drivetrain->_AngleController->GetP());
+			//SmartDashboard::PutNumber("Setpoint", CommandBase::drivetrain->_AngleController->GetSetpoint());
+			//SmartDashboard::PutNumber("Proportional", CommandBase::drivetrain->_AngleController->GetP());
 		}
 };
 

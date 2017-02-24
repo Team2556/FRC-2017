@@ -6,8 +6,9 @@ AutonomousMain::AutonomousMain(){
 	// e.g. AddSequential(new Command1());
 	//      AddSequential(new Command2());
 	// these will run in order.
-
+	AddSequential(new DriveFromPlayerStation(1, 1));
 	AddSequential(new DriveToGearPost());
+	AddSequential(new DriveOntoPeg());
 
 
 

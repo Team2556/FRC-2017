@@ -7,11 +7,11 @@
 
 #include "IMU.h"
 
-IMU::IMU(SPI::Port Port):
+/*IMU::IMU(SPI::Port Port):
 	AHRS(Port)/*,
-	_Yaw(0)*/{
+	_Yaw(0){
 
-}
+}*/
 
 /*int IMU::GetAdjustedYaw(){
 	return _Yaw;

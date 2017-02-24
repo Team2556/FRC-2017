@@ -14,11 +14,11 @@
 #include <cmath>
 #include <math.h>
 
-class IMU:public AHRS{
+class IMU/*:public AHRS*/{
 	private:
 		//int _Yaw;
 	public:
-		IMU(SPI::Port Port);
+		//IMU(SPI::Port Port);
 		/*int GetAdjustedYaw();
 		void Update();*/
 };

@@ -2,6 +2,8 @@
 #define AutonomousMain_H
 
 #include <Commands/DriveTrain/DriveToGearPost.h>
+#include <Commands/DriveTrain/DriveFromPlayerStation.h>
+#include <Commands/DriveTrain/DriveOntoPeg.h>
 #include "WPILib.h"
 #include "Commands/CommandGroup.h"
 
