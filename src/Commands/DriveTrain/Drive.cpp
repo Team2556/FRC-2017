@@ -1,34 +1,37 @@
-#include "DriveOntoPeg.h"
+#include <Commands/DriveTrain/Drive.h>
 
-DriveOntoPeg::DriveOntoPeg() {
+Drive::Drive(float timeout, float xPower, float yPower, float rotation) {
 	// Use Requires() here to declare subsystem dependencies
 	// eg. Requires(Robot::chassis.get());
 	Requires(CommandBase::drivetrain.get());
-	SetTimeout(2);
+	SetTimeout(timeout);
+	_xPower = xPower;
+	_yPower = yPower;
+	_Rotation = rotation;
 }
 
 // Called just before this Command runs the first time
-void DriveOntoPeg::Initialize() {
+void Drive::Initialize() {
 
 }
 
 // Called repeatedly when this Command is scheduled to run
-void DriveOntoPeg::Execute() {
-	CommandBase::drivetrain.get()->Drive(0.0, 0.5, 0.0, 0.0);
+void Drive::Execute() {
+	CommandBase::drivetrain.get()->Drive(_xPower, _yPower, _Rotation, 0.0);
 }
 
 // Make this return true when this Command no longer needs to run execute()
-bool DriveOntoPeg::IsFinished() {
+bool Drive::IsFinished() {
 	return IsTimedOut();
 }
 
 // Called once after isFinished returns true
-void DriveOntoPeg::End() {
+void Drive::End() {
 	CommandBase::drivetrain.get()->Drive(0.0, 0.0, 0.0, 0.0);
 }
 
 // Called when another command which requires one or more of the same
 // subsystems is scheduled to run
-void DriveOntoPeg::Interrupted() {
+void Drive::Interrupted() {
 
 }

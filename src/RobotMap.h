@@ -39,4 +39,7 @@ const int BALL_MOTOR = 16;
 // Climber motor
 const int CLIMBER_MOTOR = 15;
 
+//LED lights
+const int LED = 1;
+
 #endif  // ROBOTMAP_H

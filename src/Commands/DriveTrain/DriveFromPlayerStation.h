@@ -6,7 +6,7 @@
 class DriveFromPlayerStation : public CommandBase {
 private:
 	float _PlayerStations [3] = {-3, 0, 3};
-	float _Gears [3] = {-2.7, 0, 2.7};
+	float _Gears [3] = {-1.5, 0, 1.5};
 public:
 	DriveFromPlayerStation(int playerStation, int gear);
 	void Initialize();

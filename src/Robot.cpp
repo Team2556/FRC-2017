@@ -23,6 +23,8 @@ class Robot:public frc::IterativeRobot{
 		std::unique_ptr<frc::Compressor> Comp;
 		std::shared_ptr<NetworkTable> Table;
 		frc::Preferences *prefs;
+
+		std::unique_ptr<Talon> _LEDs;
 		//frc::SendableChooser<frc::Command*> chooser;
 	public:
 		void RobotInit() override{
@@ -45,8 +47,11 @@ class Robot:public frc::IterativeRobot{
 
 			prefs = frc::Preferences::GetInstance();
 
+			_LEDs.reset(new Talon(LED));
+			_LEDs->Set(0.2);
+
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
-			// frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+			//frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
 		}
 
 		void DisabledInit() override{
