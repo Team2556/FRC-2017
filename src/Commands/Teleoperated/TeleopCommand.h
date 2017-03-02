@@ -8,6 +8,8 @@
 class TeleopCommand:public CommandBase{
 	private:
 		int _DriveMode; // -1: Left; 0: Front; 1: Right
+		bool _SwitchFlag;
+		std::shared_ptr<NetworkTable> _Table;
 	public:
 		TeleopCommand();
 		void Initialize();

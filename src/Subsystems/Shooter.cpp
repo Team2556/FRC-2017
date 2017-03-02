@@ -9,7 +9,8 @@ Shooter::Shooter():Subsystem("Shooter"){
 	/*_ShooterMotor->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Relative);
 	_ShooterMotor->SetControlMode(frc::CANSpeedController::kSpeed);
 	_ShooterMotor->SetClosedLoopOutputDirection(true);
-	_ShooterMotor->SetP(0.05);
+	_ShooterMotor->SetPID(0.0, 0.0, 0.0, 0.0);*/
+	/*_ShooterMotor->SetP(0.05);
 	_ShooterMotor->SetI(0.0004);
 	_ShooterMotor->SetD(0.1);*/
 }

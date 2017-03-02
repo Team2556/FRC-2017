@@ -15,10 +15,10 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	_BackLeft->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);
 	_BackRight->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Absolute);*/
 
-	_FrontLeft->SetVoltageRampRate(10.0);
+	/*_FrontLeft->SetVoltageRampRate(10.0);
 	_FrontRight->SetVoltageRampRate(10.0);
 	_BackLeft->SetVoltageRampRate(10.0);
-	_BackRight->SetVoltageRampRate(10.0);
+	_BackRight->SetVoltageRampRate(10.0);*/
 
 	_Drive.reset(new frc::RobotDrive(_FrontLeft.get(), _BackLeft.get(), _FrontRight.get(), _BackRight.get()));
 

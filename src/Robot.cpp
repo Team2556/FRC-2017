@@ -40,9 +40,6 @@ class Robot:public frc::IterativeRobot{
 
 			Comp.reset(new frc::Compressor(PCM));
 
-			Table = NetworkTable::GetTable("Vision");
-			Table->PutNumber("Camera", 0.0);
-
 			SmartDashboard::PutBoolean("Two Controllers?", true);
 
 			prefs = frc::Preferences::GetInstance();
@@ -51,7 +48,7 @@ class Robot:public frc::IterativeRobot{
 			_LEDs->Set(0.2);
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
-			//frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+			frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
 		}
 
 		void DisabledInit() override{
