@@ -13,7 +13,7 @@ TeleopCommand::TeleopCommand():
 	Requires(shooter.get());
 
 	_Table = NetworkTable::GetTable("Vision");
-	_Table->PutNumber("Camera", 0.0);
+	_Table->PutNumber("Camera", 1.0);
 }
 
 void TeleopCommand::Initialize(){
@@ -48,7 +48,7 @@ void TeleopCommand::Execute(){
 	//oi->Xbox1.get()->GetBumper(frc::XboxController::kLeftHand) ? SmartDashboard::PutNumber("Camera", SmartDashboard::GetNumber("Camera", 1.0) - 1.0) : 0.0;
 
 	if(SmartDashboard::GetBoolean("Two Controllers?", true)) {
-		shooter.get()->Set(oi->Xbox2.get()->GetBumper(frc::XboxController::kRightHand) ? 0.5 : 0.0, oi->Xbox2.get()->GetAButton() ? -0.5 : oi->Xbox2.get()->GetBButton() ? -0.25 : oi->Xbox2.get()->GetYButton() ? 0.5 : 0.0);
+		shooter.get()->Set(oi->Xbox2.get()->GetBumper(frc::XboxController::kRightHand) ? 0.8 : 0.0, oi->Xbox2.get()->GetAButton() ? -0.5 : oi->Xbox2.get()->GetBButton() ? -0.25 : oi->Xbox2.get()->GetYButton() ? 0.5 : 0.0);
 		ballintake.get()->Set(oi->Xbox2.get()->GetTriggerAxis(frc::XboxController::kRightHand) - oi->Xbox2.get()->GetTriggerAxis(frc::XboxController::kLeftHand));
 		gearintake.get()->Set(oi->Xbox2.get()->GetXButton() ? frc::DoubleSolenoid::Value::kForward : frc::DoubleSolenoid::Value::kReverse);
 		climber.get()->Set(-abs(DeadSens(oi->Xbox2.get()->GetY(frc::XboxController::kLeftHand), 0.025, 1.0)));

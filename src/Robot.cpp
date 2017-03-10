@@ -45,7 +45,7 @@ class Robot:public frc::IterativeRobot{
 			prefs = frc::Preferences::GetInstance();
 
 			_LEDs.reset(new Talon(LED));
-			_LEDs->Set(0.2);
+			_LEDs->Set(-0.1);
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
