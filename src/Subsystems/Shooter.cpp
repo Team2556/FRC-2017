@@ -20,11 +20,11 @@ void Shooter::InitDefaultCommand(){
 }
 
 void Shooter::Set(double ShooterSpeed, double TankSpeed){
-	_ShooterMotor->Set(ShooterSpeed/* * -5500*/);
+	_ShooterMotor->Set(ShooterSpeed/* * -6100*/);
 
-	/*SmartDashboard::PutNumber("Error", _ShooterMotor->GetClosedLoopError());
+	SmartDashboard::PutNumber("Error", _ShooterMotor->GetClosedLoopError());
 	SmartDashboard::PutNumber("Speed", _ShooterMotor->GetSpeed());
-	SmartDashboard::PutNumber("Shooter Set", _ShooterMotor->GetSetpoint());*/
+	SmartDashboard::PutNumber("Shooter Set", _ShooterMotor->GetSetpoint());
 
 	_TankMotor->Set(TankSpeed);
 }
