@@ -26,6 +26,7 @@ const int PCM = 2;
 // Drivetrain motors
 const int FRONT_LEFT_MOTOR = 11;
 const int FRONT_RIGHT_MOTOR = 13;
+
 const int BACK_LEFT_MOTOR = 12;
 const int BACK_RIGHT_MOTOR = 14;
 
@@ -39,7 +40,10 @@ const int BALL_MOTOR = 16;
 // Climber motor
 const int CLIMBER_MOTOR = 15;
 
-//LED lights
+// LED lights
 const int LED = 1;
+
+// Camera Stuff
+const int CAMERA_SERVO = 2;
 
 #endif  // ROBOTMAP_H

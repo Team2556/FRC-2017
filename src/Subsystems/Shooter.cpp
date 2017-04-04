@@ -5,6 +5,7 @@
 Shooter::Shooter():Subsystem("Shooter"){
 	_ShooterMotor.reset(new CANTalon(SHOOTER_MOTOR));
 	_TankMotor.reset(new Spark(TANK_MOTOR));
+	_CameraServo.reset(new Servo(CAMERA_SERVO));
 
 	/*_ShooterMotor->SetFeedbackDevice(CANTalon::FeedbackDevice::CtreMagEncoder_Relative);
 	_ShooterMotor->SetControlMode(frc::CANSpeedController::kSpeed);
@@ -27,4 +28,8 @@ void Shooter::Set(double ShooterSpeed, double TankSpeed){
 	SmartDashboard::PutNumber("Shooter Set", _ShooterMotor->GetSetpoint());
 
 	_TankMotor->Set(TankSpeed);
+}
+
+void Shooter::SetServo(float Pos){
+	_CameraServo->Set(Pos);
 }

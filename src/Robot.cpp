@@ -34,7 +34,6 @@ class Robot:public frc::IterativeRobot{
 			chooser.AddObject("My Auto", new MyAutoCommand());
 			frc::SmartDashboard::PutData("Auto Modes", &chooser);*/
 
-			AutonomousC.reset(new AutonomousMain());
 			TeleopC.reset(new TeleopCommand());
 			//NavX.reset(new IMU(SPI::Port::kMXP));
 
@@ -49,6 +48,8 @@ class Robot:public frc::IterativeRobot{
 
 			// This code streams camera 0 to the dashboard using WPILib's CameraServer
 			frc::CameraServer::GetInstance()->StartAutomaticCapture(0);
+
+			frc::CameraServer::GetInstance()->AddAxisCamera("10.25.56.6");
 		}
 
 		void DisabledInit() override{
@@ -71,6 +72,11 @@ class Robot:public frc::IterativeRobot{
 
 			AutonomousC.reset(chooser.GetSelected());*/
 			Comp->SetClosedLoopControl(true);
+
+			if (AutonomousC.get() != nullptr)
+				AutonomousC.reset();
+			AutonomousC.reset(new AutonomousMain());
+
 			if (AutonomousC.get() != nullptr){
 				AutonomousC->Start();
 			}
