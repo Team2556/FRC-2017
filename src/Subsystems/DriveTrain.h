@@ -15,7 +15,7 @@ class DriveTrain:public Subsystem, frc::PIDOutput{
 		PIDSourceD _XPIDSource;
 		PIDSourceD _YPIDSource;
 
-		//frc::LiveWindow *LW;
+		frc::LiveWindow *LW;
 	public:
 		std::unique_ptr<CANTalon> _FrontLeft;
 		std::unique_ptr<CANTalon> _FrontRight;
@@ -32,6 +32,7 @@ class DriveTrain:public Subsystem, frc::PIDOutput{
 		void InitDefaultCommand();
 		void Drive(double X, double Y, double Rotation, double GyroAngle);
 		void DriveWithAngle(double X, double Y, double dSetPoint, double GyroAngle);
+		void SetPID(float P, float I, float D, float F);
 		void PIDWrite(double Output);
 		void DriveToGear();
 		void DriveToGoal();

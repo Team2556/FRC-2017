@@ -4,6 +4,7 @@
 #include <Commands/DriveTrain/DriveToGearPost.h>
 #include <Commands/DriveTrain/DriveFromPlayerStation.h>
 #include <Commands/DriveTrain/Drive.h>
+#include <Commands/DriveTrain/DriveToAngle.h>
 #include <Commands/Autonomous/Shooting.h>
 #include "WPILib.h"
 #include "Commands/CommandGroup.h"

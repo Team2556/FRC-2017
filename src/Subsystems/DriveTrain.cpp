@@ -22,7 +22,7 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 
 	_Drive.reset(new frc::RobotDrive(_FrontLeft.get(), _BackLeft.get(), _FrontRight.get(), _BackRight.get()));
 
-	//_AngleController.reset(new frc::PIDController(0.0, 0.0, 0.0, NavX.get(), this));
+	_AngleController.reset(new frc::PIDController(0.0, 0.0, 0.0, NavX.get(), this));
 	_XPID.reset(new frc::PIDController(0.0, 0.0, 0.0, &_XPIDSource, this));
 	_YPID.reset(new frc::PIDController(0.0, 0.0, 0.0, &_YPIDSource, this));
 
@@ -31,9 +31,9 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 
 	table = NetworkTable::GetTable("Vision");
 
-	/*LW = LiveWindow::GetInstance();
+	LW = LiveWindow::GetInstance();
 	LW->AddActuator("DriveTrain", "PID", _AngleController.get());
-	LW->SetEnabled(true);*/
+	LW->SetEnabled(true);
 }
 
 void DriveTrain::InitDefaultCommand(){
@@ -45,8 +45,12 @@ void DriveTrain::Drive(double X, double Y, double Rotation, double GyroAngle){
 }
 
 void DriveTrain::DriveWithAngle(double X, double Y, double dSetPoint, double GyroAngle){
-	//_AngleController->SetSetpoint(_AngleController->GetSetpoint() + dSetPoint);//_AngleController->GetSetpoint() + dSetPoint);
-	//_Drive->MecanumDrive_Cartesian(X, Y, _AngleController->Get(), GyroAngle);
+	_AngleController->SetSetpoint(_AngleController->GetSetpoint() + dSetPoint);//_AngleController->GetSetpoint() + dSetPoint);
+	_Drive->MecanumDrive_Cartesian(X, Y, _AngleController->Get(), GyroAngle);
+}
+
+void DriveTrain::SetPID(float P, float I, float D, float F){
+	_AngleController->SetPID(P, I, D, F);
 }
 
 void DriveTrain::PIDWrite(double Output){

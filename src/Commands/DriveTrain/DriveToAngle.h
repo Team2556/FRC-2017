@@ -8,13 +8,15 @@
 
 extern std::unique_ptr<IMU> NavX;
 
-class DriveToAngle:frc::PIDCommand{
+class DriveToAngle:public CommandBase{
+	private:
+		double _xPower;
+		double _yPower;
+		double _Angle;
 	public:
-		DriveToAngle();
+		DriveToAngle(float timeout, float xPower, float yPower, float angle);
 		void Initialize();
 		void Execute();
-		void PIDWrite(double Output);
-		double PIDGet();
 		bool IsFinished();
 		void End();
 		void Interrupted();

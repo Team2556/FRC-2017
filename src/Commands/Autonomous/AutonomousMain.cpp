@@ -26,7 +26,7 @@ AutonomousMain::AutonomousMain(){
 		}
 		break;
 	case 2:
-		break;
+		AddSequential(new DriveToAngle(1000.0, 0.0, 0.0, 0.0));//fourth argument change to change the angle
 	}
 
 	//AddSequential(new Drive(1.5, 0.0, -0.5, 0.0));

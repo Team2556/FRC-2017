@@ -1,8 +1,11 @@
 #include <Commands/DriveTrain/DriveToAngle.h>
 
-DriveToAngle::DriveToAngle():
-	frc::PIDCommand(0.0, 0.0, 0.0){
+DriveToAngle::DriveToAngle(float timeout, float xPower, float yPower, float angle){
 	Requires(CommandBase::drivetrain.get());
+	SetTimeout(timeout);
+	_xPower = xPower;
+	_yPower = yPower;
+	_Angle = angle;
 }
 
 void DriveToAngle::Initialize(){
@@ -10,23 +13,15 @@ void DriveToAngle::Initialize(){
 }
 
 void DriveToAngle::Execute(){
-
-}
-
-void DriveToAngle::PIDWrite(double Output){
-	CommandBase::drivetrain.get()->Drive(0.0, 0.0, Output, 0.0);
-}
-
-double DriveToAngle::PIDGet(){
-	return 0.0;//NavX->GetYaw();
+	drivetrain.get()->Drive(_xPower, _yPower, (NavX->GetYaw() - _Angle) * -0.05, 0.0);
 }
 
 bool DriveToAngle::IsFinished(){
-	return false;
+	return IsTimedOut();
 }
 
 void DriveToAngle::End(){
-	CommandBase::drivetrain.get()->Drive(0.0, 0.0, 0.0, 0.0);
+	CommandBase::drivetrain.get()->DriveWithAngle(0.0, 0.0, 0.0, 0.0);
 }
 
 void DriveToAngle::Interrupted(){
