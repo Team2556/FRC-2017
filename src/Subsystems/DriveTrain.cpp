@@ -22,7 +22,9 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 
 	_Drive.reset(new frc::RobotDrive(_FrontLeft.get(), _BackLeft.get(), _FrontRight.get(), _BackRight.get()));
 
+#ifdef NAVX
 	_AngleController.reset(new frc::PIDController(0.0, 0.0, 0.0, NavX.get(), this));
+#endif
 	_XPID.reset(new frc::PIDController(0.0, 0.0, 0.0, &_XPIDSource, this));
 	_YPID.reset(new frc::PIDController(0.0, 0.0, 0.0, &_YPIDSource, this));
 
@@ -32,7 +34,9 @@ DriveTrain::DriveTrain():Subsystem("DriveTrain"){
 	table = NetworkTable::GetTable("Vision");
 
 	LW = LiveWindow::GetInstance();
+#ifdef NAVX
 	LW->AddActuator("DriveTrain", "PID", _AngleController.get());
+#endif
 	LW->SetEnabled(true);
 }
 
@@ -44,13 +48,20 @@ void DriveTrain::Drive(double X, double Y, double Rotation, double GyroAngle){
 	_Drive->MecanumDrive_Cartesian(X, Y, Rotation, GyroAngle);
 }
 
-void DriveTrain::DriveWithAngle(double X, double Y, double dSetPoint, double GyroAngle){
+void DriveTrain::DriveWithAngle(double X, double Y, double dSetPoint, double GyroAngle)
+	{
+#ifdef NAVX
 	_AngleController->SetSetpoint(_AngleController->GetSetpoint() + dSetPoint);//_AngleController->GetSetpoint() + dSetPoint);
 	_Drive->MecanumDrive_Cartesian(X, Y, _AngleController->Get(), GyroAngle);
-}
+#else
+	_Drive->MecanumDrive_Cartesian(X, Y, 0.0, GyroAngle);
+#endif
+	}
 
 void DriveTrain::SetPID(float P, float I, float D, float F){
+#ifdef NAVX
 	_AngleController->SetPID(P, I, D, F);
+#endif
 }
 
 void DriveTrain::PIDWrite(double Output){

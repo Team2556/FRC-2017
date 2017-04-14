@@ -46,4 +46,7 @@ const int LED = 1;
 // Camera Stuff
 const int CAMERA_SERVO = 2;
 
+// NavX
+#define NAVX
+
 #endif  // ROBOTMAP_H

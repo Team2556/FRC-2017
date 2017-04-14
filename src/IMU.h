@@ -14,6 +14,8 @@
 #include <cmath>
 #include <math.h>
 
+#include <RobotMap.h>
+
 class IMU:public AHRS{
 	private:
 		int _Yaw;
@@ -23,5 +25,8 @@ class IMU:public AHRS{
 		void Update();
 };
 
+#ifdef NAVX
 extern std::unique_ptr<IMU> NavX;
+#endif
+
 #endif

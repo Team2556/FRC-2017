@@ -1,3 +1,4 @@
+#include <RobotMap.h>
 #include <Commands/DriveTrain/DriveToAngle.h>
 
 DriveToAngle::DriveToAngle(float timeout, float xPower, float yPower, float angle){
@@ -13,7 +14,11 @@ void DriveToAngle::Initialize(){
 }
 
 void DriveToAngle::Execute(){
+#ifdef NAVX
 	drivetrain.get()->Drive(_xPower, _yPower, (NavX->GetYaw() - _Angle) * -0.05, 0.0);
+#else
+	drivetrain.get()->Drive(_xPower, _yPower, 0.0, 0.0);
+#endif
 }
 
 bool DriveToAngle::IsFinished(){

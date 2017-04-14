@@ -26,7 +26,19 @@ AutonomousMain::AutonomousMain(){
 		}
 		break;
 	case 2:
-		AddSequential(new DriveToAngle(1000.0, 0.0, 0.0, 0.0));//fourth argument change to change the angle
+		if(DriverStation::GetInstance().GetAlliance() == DriverStation::Alliance::kBlue){
+			// Drive a little bit then shoot
+			AddSequential(new DriveToAngle(1.0, 0.0, -0.2, 0.0));//fourth argument change to change the angle
+			AddSequential(new Shooting(5.0, 0.6, -0.4));
+			// Move to peg
+			AddSequential(new DriveToAngle(2.6, 0.8, 0.5, 45.0));//fourth argument change to change the angle
+
+		} else if(DriverStation::GetInstance().GetAlliance() == DriverStation::Alliance::kRed){
+		}
+		break;
+	case 3:
+		AddSequential(new DriveToGearPost(10.0));
+		break;
 	}
 
 	//AddSequential(new Drive(1.5, 0.0, -0.5, 0.0));

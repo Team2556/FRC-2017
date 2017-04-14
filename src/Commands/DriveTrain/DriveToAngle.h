@@ -4,9 +4,12 @@
 #include "CommandBase.h"
 #include "WPILib.h"
 #include "RAR/RARMath.h"
+
+#ifdef NAVX
 #include "IMU.h"
 
 extern std::unique_ptr<IMU> NavX;
+#endif
 
 class DriveToAngle:public CommandBase{
 	private:

@@ -1,7 +1,13 @@
 #ifndef COMMAND_BASE_H
 #define COMMAND_BASE_H
 
+
 #include <string>
+
+#include <opencv2/core.hpp>
+#include <opencv2/videoio.hpp>
+#include <opencv2/imgproc.hpp>
+
 #include "Commands/Command.h"
 #include "Subsystems/DriveTrain.h"
 #include "Subsystems/BallIntake.h"
@@ -28,7 +34,8 @@ class CommandBase:public Command{
 		static std::unique_ptr<Climber> climber;
 		static std::unique_ptr<Shooter> shooter;
 
-		static std::unique_ptr<OI> oi;
+		static std::unique_ptr<OI>	oi;
+
 };
 
 #endif

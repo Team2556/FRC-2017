@@ -1,13 +1,18 @@
 #ifndef DriveTrain_H
 #define DriveTrain_H
 
+#include "../RobotMap.h"
+
 #include "Commands/Subsystem.h"
 #include "WPILib.h"
 #include "CANTalon.h"
-#include "IMU.h"
 #include "PIDSourceD.h"
 
+#ifdef NAVX
+#include "IMU.h"
+
 extern std::unique_ptr<IMU> NavX;
+#endif
 
 class DriveTrain:public Subsystem, frc::PIDOutput{
 	private:
@@ -24,7 +29,9 @@ class DriveTrain:public Subsystem, frc::PIDOutput{
 
 		std::unique_ptr<frc::RobotDrive> _Drive;
 
+#ifdef NAVX
 		std::unique_ptr<frc::PIDController> _AngleController;
+#endif
 		std::unique_ptr<frc::PIDController> _XPID;
 		std::unique_ptr<frc::PIDController> _YPID;
 
